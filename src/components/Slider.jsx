@@ -50,7 +50,7 @@ const Slider = () => {
     return (
         <div
             id="image-slider"
-            className="relative overflow-hidden w-full mx-auto aspect-video rounded-2xl shadow-lg"
+            className="relative overflow-hidden w-full mx-auto aspect-video max-h-[50vh] rounded-2xl shadow-lg  "
             onMouseEnter={stopAutoSlide}
             onMouseLeave={startAutoSlide}
         >
@@ -61,7 +61,13 @@ const Slider = () => {
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
                 {images.map((img, i) => (
-                    <img key={i} src={img.src} alt={img.alt} className="w-full flex-shrink-0" />
+                    <div key={i} className="w-full shrink-0">
+                        <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="w-full shrink-0 object-center object-cover h-full"
+                        />
+                    </div>
                 ))}
             </div>
 
@@ -93,11 +99,7 @@ const Slider = () => {
                         className={`h-2 w-2 rounded-full transition-colors ${
                             i === currentIndex ? "bg-white" : "bg-white/50"
                         }`}
-                    >
-
-                        
-
-                    </button>
+                    ></button>
                 ))}
             </div>
         </div>

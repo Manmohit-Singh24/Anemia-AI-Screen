@@ -30,7 +30,7 @@ function App() {
     const theme = useSelector((state) => state.AuthData.theme);
 
     return (
-        <div className={"w-screen h-screen overflow-scroll " + theme}>
+        <div className={"w-screen h-screen overflow-hidden " + theme}>
             <Outlet />
         </div>
     );

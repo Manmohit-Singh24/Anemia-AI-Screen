@@ -8,6 +8,7 @@ import {
     Users2,
     Settings as SettingsIcon,
     Send,
+    Presentation
 } from "lucide-react";
 import { toogleTheme } from "../store/store";
 import Cookies from "js-cookie";
@@ -19,12 +20,14 @@ import Dashboard from "../components/Dashboard";
 import Patient from "../components/Patients";
 import Referrals from "../components/Referrals";
 import Settings from "../components/Settings";
-
+import LocalUserDashboard from "../components/LocalUserDashboard";
+import ConsultationPage from "../components/ConsultationPage";
+import TrainingPage from "../components/TrainingPage";
 const Layout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { page } = useParams();
-    
+
     const { username, role, theme } = useSelector((state) => state.AuthData);
     const onToggleTheme = () => {
         dispatch(toogleTheme());
@@ -40,13 +43,18 @@ const Layout = () => {
     const pageComponent = (() => {
         switch (page) {
             case undefined:
+                if (role === "Patient") return <LocalUserDashboard />;
                 return <Dashboard />;
-            case "patients":
+            case "Patients":
+                if (role === "Patient") return <ConsultationPage />;
                 return <Patient />;
+
             case "referrals":
-                return <Referrals />;
+                if (role !== "Patient") return <Referrals />;
             case "settings":
                 return <Settings />;
+            case "tutorial":
+                if (role === "ASHA Worker") return <TrainingPage />;
             default:
                 navigate("/");
                 return <></>;
@@ -69,7 +77,10 @@ const Layout = () => {
                         <nav className="flex lg:flex-col gap-2 w-full justify-around lg:justify-start">
                             <Link
                                 to={`/`}
-                                className="sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left"
+                                className={
+                                    "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                    (page === undefined ? " active" : "")
+                                }
                             >
                                 <LayoutDashboard />
                                 <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
@@ -77,26 +88,51 @@ const Layout = () => {
                                 </span>
                             </Link>
                             <Link
-                                to={`/patients`}
-                                className="sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left"
+                                to={`/Patients`}
+                                className={
+                                    "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                    (page === "Patients" ? " active" : "")
+                                }
                             >
                                 <Users2 />
                                 <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
-                                    Patients
+                                    {role === "Patient" ? "Consultation" : "Patients"}
                                 </span>
                             </Link>
-                            <Link
-                                to={`/referrals`}
-                                className="sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left"
-                            >
-                                <Send />
-                                <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
-                                    Referrals
-                                </span>
-                            </Link>
+                            {role !== "Patient" && (
+                                <Link
+                                    to={`/referrals`}
+                                    className={
+                                        "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                        (page === "referrals" ? " active" : "")
+                                    }
+                                >
+                                    <Send />
+                                    <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
+                                        Referrals
+                                    </span>
+                                </Link>
+                            )}
+                            {role === "ASHA Worker" && (
+                                <Link
+                                    to={`/tutorial`}
+                                    className={
+                                        "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                        (page === "referrals" ? " active" : "")
+                                    }
+                                >
+                                    <Presentation />
+                                    <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
+                                        Tutorial
+                                    </span>
+                                </Link>
+                            )}
                             <Link
                                 to={`/settings`}
-                                className="sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left"
+                                className={
+                                    "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                    (page === "settings" ? " active" : "")
+                                }
                             >
                                 <SettingsIcon />
                                 <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
@@ -185,19 +221,23 @@ const Layout = () => {
                             <button
                                 id="logout-button-mobile"
                                 className="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                                onClick={onLogout}
                             >
                                 <LogOut className="w-4 h-4 mr-2" />
                             </button>
                         </div>
                     </header>
-                    <div id="page-container" className="p-4 md:p-8 h-screen overflow-scroll">
+                    <div
+                        id="page-container"
+                        className="p-4 md:p-10 lg:mt-0 h-screen  overflow-scroll"
+                    >
                         {pageComponent}
                     </div>
                 </main>
             </div>
             {/* <!-- Modals --> */}
-            <div id="patient-modal" className="modal">
-                <div id="patient-modal-content" className="modal-content max-w-3xl"></div>
+            <div id="Patient-modal" className="modal">
+                <div id="Patient-modal-content" className="modal-content max-w-3xl"></div>
             </div>
             <div id="referral-modal" className="modal">
                 <div id="referral-modal-content" className="modal-content max-w-lg"></div>

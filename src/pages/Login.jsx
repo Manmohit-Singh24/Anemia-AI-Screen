@@ -10,7 +10,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("sih2025");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState("Patient");
     const [error, setError] = useState("");
 
 
@@ -74,10 +74,11 @@ const Login = () => {
                             name="role"
                             className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-foreground focus:outline-none focus:ring-rose-500 focus:border-rose-500 sm:text-sm rounded-md"
                             onChange={(e) => setRole(e.target.value)}
+                            value={role}
                         >
                             <option>ASHA Worker</option>
                             <option>Doctor</option>
-                            <option>Admin</option>
+                            <option>Patient</option>
                         </select>
                     </div>
                     <div>
