@@ -71,7 +71,7 @@ const Layout = () => {
                 >
                     <div className="flex lg:flex-col w-full justify-around lg:justify-start">
                         <div className="hidden lg:flex items-center mb-10 px-2">
-                            <HeartPulse className="mr-2" />
+                            <HeartPulse className="mr-2 w-10 h-10" />
                             <span className="text-2xl font-bold">Asha AI-Screen</span>
                         </div>
                         <nav className="flex lg:flex-col gap-2 w-full justify-around lg:justify-start">
