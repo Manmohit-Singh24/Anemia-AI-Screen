@@ -286,7 +286,7 @@ function PatientModal({ patient, onClose }) {
                         <div class="grid grid-cols-3 gap-4">
                             <div class="text-center">
                                 <img
-                                    src="https://images.unsplash.com/photo-1615982236371-f239a2a20824?auto=format&fit=crop&q=60&w=400"
+                                    src="./assets/eye.jpg"
                                     class="rounded-lg shadow-md w-full aspect-square object-cover"
                                     alt="Eye"
                                 />
@@ -296,7 +296,7 @@ function PatientModal({ patient, onClose }) {
                             </div>
                             <div class="text-center">
                                 <img
-                                    src="https://images.unsplash.com/photo-1616178347462-861ddd2a85e2?auto=format&fit=crop&q=60&w=400"
+                                    src="./assets/tongue.jpeg"
                                     class="rounded-lg shadow-md w-full aspect-square object-cover"
                                     alt="Tongue"
                                 />
@@ -306,7 +306,7 @@ function PatientModal({ patient, onClose }) {
                             </div>
                             <div class="text-center">
                                 <img
-                                    src="https://images.unsplash.com/photo-1596521832932-8413a74b071e?auto=format&fit=crop&q=60&w=400"
+                                    src="./assets/nailbed.png"
                                     class="rounded-lg shadow-md w-full aspect-square object-cover"
                                     alt="Nailbed"
                                 />
