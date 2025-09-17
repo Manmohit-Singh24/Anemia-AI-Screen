@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Eye, X } from "lucide-react";
+import { Eye, X, Trash2, Plus } from "lucide-react";
 
 const Employees = () => {
-    const [selectedWorker, setSelectedWorker] = useState(null);
-    const workers = [
+    const [workers, setWorkers] = useState([
         {
             id: 1,
             firstName: "Anita",
@@ -24,12 +23,6 @@ const Employees = () => {
                     pregnancyStage: "2nd Trimester",
                     hemoglobin: "9.5 g/dL",
                 },
-                {
-                    id: 102,
-                    name: "Poonam Devi",
-                    pregnancyStage: "3rd Trimester",
-                    hemoglobin: "8.8 g/dL",
-                },
             ],
         },
         {
@@ -45,164 +38,70 @@ const Employees = () => {
             healthCenter: "Primary Health Center 2",
             dateOfJoining: "2021-09-10",
             status: "Active",
-            assignedCases: [
-                {
-                    id: 201,
-                    name: "Neha Singh",
-                    pregnancyStage: "1st Trimester",
-                    hemoglobin: "10.2 g/dL",
-                },
-            ],
+            assignedCases: [],
         },
-        {
-            id: 3,
-            firstName: "Rekha",
-            lastName: "Sharma",
-            age: 30,
-            phone: "+91 9876543212",
-            email: "rekha.sharma@gmail.com",
-            village: "Village C",
-            district: "District Y",
-            state: "State Y",
-            healthCenter: "Primary Health Center 3",
-            dateOfJoining: "2020-07-20",
+    ]);
+
+    const [selectedWorker, setSelectedWorker] = useState(null);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [newWorker, setNewWorker] = useState({
+        firstName: "",
+        lastName: "",
+        age: "",
+        phone: "",
+        email: "",
+        village: "",
+        district: "",
+        state: "",
+        healthCenter: "",
+        dateOfJoining: "",
+        status: "Active",
+        assignedCases: [],
+    });
+
+    // Delete worker
+    const handleDelete = (id) => {
+        setWorkers(workers.filter((w) => w.id !== id));
+        setSelectedWorker(null);
+    };
+
+    // Add worker
+    const handleAdd = (e) => {
+        e.preventDefault();
+        const workerToAdd = {
+            ...newWorker,
+            id: Date.now(),
+            age: parseInt(newWorker.age),
+        };
+        setWorkers([...workers, workerToAdd]);
+        setShowAddModal(false);
+        setNewWorker({
+            firstName: "",
+            lastName: "",
+            age: "",
+            phone: "",
+            email: "",
+            village: "",
+            district: "",
+            state: "",
+            healthCenter: "",
+            dateOfJoining: "",
             status: "Active",
-            assignedCases: [
-                {
-                    id: 301,
-                    name: "Anjali Mehta",
-                    pregnancyStage: "2nd Trimester",
-                    hemoglobin: "9.0 g/dL",
-                },
-            ],
-        },
-        {
-            id: 4,
-            firstName: "Meena",
-            lastName: "Verma",
-            age: 29,
-            phone: "+91 9876543213",
-            email: "meena.verma@gmail.com",
-            village: "Village D",
-            district: "District Y",
-            state: "State Y",
-            healthCenter: "Primary Health Center 4",
-            dateOfJoining: "2019-11-05",
-            status: "Active",
-            assignedCases: [
-                {
-                    id: 401,
-                    name: "Sunita Singh",
-                    pregnancyStage: "3rd Trimester",
-                    hemoglobin: "8.7 g/dL",
-                },
-                {
-                    id: 402,
-                    name: "Pallavi Kumari",
-                    pregnancyStage: "2nd Trimester",
-                    hemoglobin: "9.1 g/dL",
-                },
-            ],
-        },
-        {
-            id: 5,
-            firstName: "Radha",
-            lastName: "Devi",
-            age: 31,
-            phone: "+91 9876543214",
-            email: "radha.devi@gmail.com",
-            village: "Village E",
-            district: "District Z",
-            state: "State Y",
-            healthCenter: "Primary Health Center 5",
-            dateOfJoining: "2021-03-12",
-            status: "Active",
-            assignedCases: [
-                {
-                    id: 501,
-                    name: "Alka Singh",
-                    pregnancyStage: "1st Trimester",
-                    hemoglobin: "10.0 g/dL",
-                },
-            ],
-        },
-        {
-            id: 6,
-            firstName: "Sita",
-            lastName: "Kumari",
-            age: 27,
-            phone: "+91 9876543215",
-            email: "sita.kumari@gmail.com",
-            village: "Village F",
-            district: "District Z",
-            state: "State Y",
-            healthCenter: "Primary Health Center 6",
-            dateOfJoining: "2022-01-18",
-            status: "Active",
-            assignedCases: [
-                {
-                    id: 601,
-                    name: "Ritu Yadav",
-                    pregnancyStage: "2nd Trimester",
-                    hemoglobin: "9.2 g/dL",
-                },
-            ],
-        },
-        {
-            id: 7,
-            firstName: "Kavita",
-            lastName: "Sharma",
-            age: 33,
-            phone: "+91 9876543216",
-            email: "kavita.sharma@gmail.com",
-            village: "Village G",
-            district: "District X",
-            state: "State Y",
-            healthCenter: "Primary Health Center 7",
-            dateOfJoining: "2018-08-25",
-            status: "Active",
-            assignedCases: [
-                {
-                    id: 701,
-                    name: "Suman Devi",
-                    pregnancyStage: "3rd Trimester",
-                    hemoglobin: "8.5 g/dL",
-                },
-            ],
-        },
-        {
-            id: 8,
-            firstName: "Priya",
-            lastName: "Devi",
-            age: 29,
-            phone: "+91 9876543217",
-            email: "priya.devi@gmail.com",
-            village: "Village H",
-            district: "District Y",
-            state: "State Y",
-            healthCenter: "Primary Health Center 8",
-            dateOfJoining: "2020-12-01",
-            status: "Active",
-            assignedCases: [
-                {
-                    id: 801,
-                    name: "Shalini Kumari",
-                    pregnancyStage: "2nd Trimester",
-                    hemoglobin: "9.4 g/dL",
-                },
-                {
-                    id: 802,
-                    name: "Mamta Devi",
-                    pregnancyStage: "3rd Trimester",
-                    hemoglobin: "8.6 g/dL",
-                },
-            ],
-        },
-    ];
+            assignedCases: [],
+        });
+    };
 
     return (
         <div className="p-6 bg-white rounded-xl shadow-md dark:bg-slate-900 dark:text-white">
-            <h2 className="text-2xl font-semibold mb-6">ASHA Workers</h2>
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-semibold">ASHA Workers</h2>
+                <button
+                    onClick={() => setShowAddModal(true)}
+                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+                >
+                    <Plus className="w-4 h-4" /> Add Worker
+                </button>
+            </div>
 
             {/* Workers Table */}
             <table className="w-full border-collapse">
@@ -235,12 +134,18 @@ const Employees = () => {
                                     {worker.status}
                                 </span>
                             </td>
-                            <td className="p-3 text-center">
+                            <td className="p-3 flex gap-2 justify-center">
                                 <button
                                     className="p-2 bg-green-600 text-white rounded hover:bg-green-700"
                                     onClick={() => setSelectedWorker(worker)}
                                 >
                                     <Eye className="w-4 h-4" />
+                                </button>
+                                <button
+                                    className="p-2 bg-red-600 text-white rounded hover:bg-red-700"
+                                    onClick={() => handleDelete(worker.id)}
+                                >
+                                    <Trash2 className="w-4 h-4" />
                                 </button>
                             </td>
                         </tr>
@@ -302,6 +207,126 @@ const Employees = () => {
                         ) : (
                             <p className="text-gray-500">No patients assigned yet.</p>
                         )}
+                    </div>
+                </div>
+            )}
+
+            {/* Add Worker Modal */}
+            {showAddModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white dark:bg-slate-900 rounded-xl shadow-lg p-6 w-full max-w-lg relative">
+                        {/* Close */}
+                        <button
+                            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                            onClick={() => setShowAddModal(false)}
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+
+                        <h2 className="text-xl font-bold mb-4">Add New Worker</h2>
+                        <form onSubmit={handleAdd} className="space-y-3">
+                            <input
+                                type="text"
+                                placeholder="First Name"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.firstName}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, firstName: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Last Name"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.lastName}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, lastName: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="number"
+                                placeholder="Age"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.age}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, age: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Phone"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.phone}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, phone: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.email}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, email: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Village"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.village}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, village: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="District"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.district}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, district: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="State"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.state}
+                                onChange={(e) =>
+                                    setNewWorker({ ...newWorker, state: e.target.value })
+                                }
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Health Center"
+                                className="w-full p-2 border rounded"
+                                value={newWorker.healthCenter}
+                                onChange={(e) =>
+                                    setNewWorker({
+                                        ...newWorker,
+                                        healthCenter: e.target.value,
+                                    })
+                                }
+                                required
+                            />
+                            
+
+                            <button
+                                type="submit"
+                                className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+                            >
+                                Save Worker
+                            </button>
+                        </form>
                     </div>
                 </div>
             )}

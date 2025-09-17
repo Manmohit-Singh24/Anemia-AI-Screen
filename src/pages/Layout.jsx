@@ -9,6 +9,8 @@ import {
     Settings as SettingsIcon,
     Send,
     Presentation,
+    Hospital,
+    IdCardLanyard,
 } from "lucide-react";
 import { toogleTheme, setAuthData } from "../store/store";
 import Cookies from "js-cookie";
@@ -22,6 +24,7 @@ import LocalUserDashboard from "../Patient/LocalUserDashboard";
 import ConsultationPage from "../Patient/ConsultationPage";
 import TrainingPage from "../AshaWorker/TrainingPage";
 import Employees from "../Hospital/Employees";
+import Hospitals from "../components/HospitalsPage";
 
 const Layout = () => {
     const dispatch = useDispatch();
@@ -70,6 +73,9 @@ const Layout = () => {
                 if (role !== "Patient" && role !== "ASHA") return <Employees />;
                 return <></>;
 
+            case "hospitals":
+                if (role !== "Patient" && role !== "ASHA") return <Hospitals />;
+                return <></>;
             default:
                 navigate("/");
                 return <></>;
@@ -102,18 +108,22 @@ const Layout = () => {
                                     Dashboard
                                 </span>
                             </Link>
-                            <Link
-                                to={`/Patients`}
-                                className={
-                                    "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
-                                    (page === "Patients" ? " active" : "")
-                                }
-                            >
-                                <Users2 />
-                                <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
-                                    {role === "Patient" ? "Consultation" : "Patients"}
-                                </span>
-                            </Link>
+                            {role === "ASHA" ||
+                                (role === "Hospital" && (
+                                    <Link
+                                        to={`/Patients`}
+                                        className={
+                                            "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                            (page === "Patients" ? " active" : "")
+                                        }
+                                    >
+                                        <Users2 />
+                                        <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
+                                            {role === "Patient" ? "Consultation" : "Patients"}
+                                        </span>
+                                    </Link>
+                                ))}
+
                             {role !== "Patient" && (
                                 <Link
                                     to={`/referrals`}
@@ -143,7 +153,7 @@ const Layout = () => {
                                 </Link>
                             )}
                             {/* Doctor Link */}
-                            {role !== "Patient" && role !== "ASHA" && (
+                            {role === "Hospital" && (
                                 <>
                                     <Link
                                         to={`/doctor`}
@@ -165,12 +175,26 @@ const Layout = () => {
                                             (page === "employees" ? " active" : "")
                                         }
                                     >
-                                        <Users2 />
+                                        <IdCardLanyard />
                                         <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
-                                            Employees
+                                            Asha Workers
                                         </span>
                                     </Link>
                                 </>
+                            )}
+                            {role === "DHO" && (
+                                <Link
+                                    to={`/hospitals`}
+                                    className={
+                                        "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                        (page === "employees" ? " active" : "")
+                                    }
+                                >
+                                    <Hospital />
+                                    <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
+                                        Hospitals{" "}
+                                    </span>
+                                </Link>
                             )}
 
                             <Link
