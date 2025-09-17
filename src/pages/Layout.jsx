@@ -230,13 +230,13 @@ const Layout = () => {
                             <div className="flex space-x-2">
                                 <button
                                     onClick={onLogout}
-                                    className="flex-1 mr-2 flex items-center justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-foreground bg-rose-600 hover:bg-rose-700 focus:outline-none"
+                                    className="flex-1 mr-2 flex items-center justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 focus:outline-none"
                                 >
                                     <LogOut className="w-4 h-4 mr-2" /> Logout
                                 </button>
                                 <button
                                     onClick={onToggleTheme}
-                                    className="p-2 rounded-md bg-rose-600 hover:bg-rose-700 text-foreground"
+                                    className="p-2 rounded-md bg-rose-600 hover:bg-rose-700 text-white"
                                 >
                                     {theme === "dark" ? (
                                         <Moon className="w-4 h-4" />
