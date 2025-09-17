@@ -37,8 +37,8 @@ const Layout = () => {
 
     const onLogout = () => {
         dispatch(setAuthData({ username: undefined, role: undefined, isLoggedIn: false }));
-        Cookies.remove("authData");
-        navigate("/login");
+        Cookies.remove("demoAppAuthData");
+        navigate("/auth");
     };
 
     const pageComponent = (() => {
@@ -59,15 +59,15 @@ const Layout = () => {
                 return <Settings />;
 
             case "tutorial":
-                if (role === "ASHA Worker") return <TrainingPage />;
+                if (role === "ASHA") return <TrainingPage />;
                 return <></>;
 
             case "doctor":
-                if (role !== "Patient" && role !== "ASHA Worker") return <Doctor />;
+                if (role !== "Patient" && role !== "ASHA") return <Doctor />;
                 return <></>;
 
             case "employees":
-                if (role !== "Patient" && role !== "ASHA Worker") return <Employees />;
+                if (role !== "Patient" && role !== "ASHA") return <Employees />;
                 return <></>;
 
             default:
@@ -128,7 +128,7 @@ const Layout = () => {
                                     </span>
                                 </Link>
                             )}
-                            {role === "ASHA Worker" && (
+                            {role === "ASHA" && (
                                 <Link
                                     to={`/tutorial`}
                                     className={
@@ -143,7 +143,7 @@ const Layout = () => {
                                 </Link>
                             )}
                             {/* Doctor Link */}
-                            {role !== "Patient" && role !== "ASHA Worker" && (
+                            {role !== "Patient" && role !== "ASHA" && (
                                 <>
                                     <Link
                                         to={`/doctor`}

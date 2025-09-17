@@ -13,7 +13,7 @@ function App() {
 
     useEffect(() => {
         const cookieTheme = Cookies.get("theme");
-        const authData = Cookies.get("authData");
+        const authData = Cookies.get("demoAppAuthData");
 
         if (authData) {
             const data = JSON.parse(authData);
@@ -21,10 +21,10 @@ function App() {
 
             // navigate only if user is not already on correct route
             if (!data.isLoggedIn) {
-                navigate("/login", { replace: true });
+                navigate("/auth", { replace: true });
             }
         } else {
-            navigate("/login", { replace: true });
+            navigate("/auth", { replace: true });
         }
     }, [dispatch, navigate]);
 

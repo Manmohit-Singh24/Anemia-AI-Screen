@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 import { store } from "./store/store.js";
 import "./index.css";
 import App from "./App.jsx";
-import Login from "./pages/Login.jsx";
 import Layout from "./pages/Layout.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -14,8 +14,14 @@ const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "/login",
-                element: <Login />,
+                path: "/auth",
+                element: <AuthPage />,
+                children: [
+                    {
+                        path: "auth/:page",
+                        element: <AuthPage />,
+                    },
+                ],
             },
             {
                 path: "/",
