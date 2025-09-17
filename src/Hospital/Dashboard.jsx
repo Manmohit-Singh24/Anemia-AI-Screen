@@ -2,7 +2,7 @@ import Slider from "./Slider";
 import DashboardCharts from "./DashboardCharts";
 import { useEffect } from "react";
 import { mockData } from "../utils/mockdata";
-import { ScanLine , Siren, Loader , CheckCircle2 } from "lucide-react";
+import { ScanLine, Siren, Loader, CheckCircle2 } from "lucide-react";
 const Dashboard = () => {
     useEffect(() => {
         document.querySelectorAll("[data-counter]").forEach((counter) => {
@@ -53,7 +53,6 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
                 <div className="bg-card p-6 rounded-2xl shadow-lg flex items-center gap-4 transition-transform transform hover:-translate-y-1">
                     <div className="bg-blue-100 dark:bg-blue-900/50 p-3 rounded-full">
-                        
                         <ScanLine className="w-7 h-7 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
@@ -68,7 +67,6 @@ const Dashboard = () => {
                 </div>
                 <div className="bg-card p-6 rounded-2xl shadow-lg flex items-center gap-4 transition-transform transform hover:-translate-y-1">
                     <div className="bg-red-100 dark:bg-red-900/50 p-3 rounded-full">
-                       
                         <Siren className="w-7 h-7 text-red-600 dark:text-red-400" />
                     </div>
                     <div>
@@ -83,7 +81,6 @@ const Dashboard = () => {
                 </div>
                 <div className="bg-card p-6 rounded-2xl shadow-lg flex items-center gap-4 transition-transform transform hover:-translate-y-1">
                     <div className="bg-yellow-100 dark:bg-yellow-900/50 p-3 rounded-full">
-                        
                         <Loader className="w-7 h-7 text-yellow-600 dark:text-yellow-400" />
                     </div>
                     <div>
@@ -100,7 +97,6 @@ const Dashboard = () => {
                 </div>
                 <div className="bg-card p-6 rounded-2xl shadow-lg flex items-center gap-4 transition-transform transform hover:-translate-y-1">
                     <div className="bg-green-100 dark:bg-green-900/50 p-3 rounded-full">
-                    
                         <CheckCircle2 className="w-7 h-7 text-green-600 dark:text-green-400" />
                     </div>
                     <div>

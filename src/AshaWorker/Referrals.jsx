@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { mockData } from "../utils/mockdata";
-import { Search, Send, Loader2, Check, Eye, Circle ,LineChart} from "lucide-react";
-import { getStatusBadge, getRiskBadge } from "./Patients";
+import { Search, Send, Loader2, Check, Eye, Circle, LineChart } from "lucide-react";
+import { getStatusBadge, getRiskBadge } from "../Hospital/Patients";
 const Referrals = () => {
     const [selectedPatient, setSelectedPatient] = useState(null);
     return (
@@ -119,28 +119,28 @@ function ReferralModal({ patient, onClose }) {
     const currentStageIndex = stages.indexOf(patient.referralStatus);
 
     return (
-            <div className="bg-card  rounded-xl shadow-lg w-full max-w-lg p-6">
-                {/* Header */}
-                <div className="flex justify-between items-start">
-                    <div>
-                        <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                            Referral Status
-                        </h2>
-                        <p className="text-gray-500 dark:text-gray-400">For {patient.name}</p>
-                    </div>
-                    <button
-                        onClick={onClose}
-                        className="p-2 rounded-full text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
-                    >
-                        &times;
-                    </button>
+        <div className="bg-card  rounded-xl shadow-lg w-full max-w-lg p-6">
+            {/* Header */}
+            <div className="flex justify-between items-start">
+                <div>
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                        Referral Status
+                    </h2>
+                    <p className="text-gray-500 dark:text-gray-400">For {patient.name}</p>
                 </div>
-
-                {/* Timeline */}
-
-                <div className="mt-6">
-                    <ReferralTimeline />
-                </div>
+                <button
+                    onClick={onClose}
+                    className="p-2 rounded-full text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700"
+                >
+                    &times;
+                </button>
             </div>
+
+            {/* Timeline */}
+
+            <div className="mt-6">
+                <ReferralTimeline />
+            </div>
+        </div>
     );
 }

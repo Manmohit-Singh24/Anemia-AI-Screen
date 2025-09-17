@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { mockData } from "../utils/mockdata";
 import { Search, Send, Loader2, Check, Eye } from "lucide-react";
-import { ReferralTimeline } from "./Referrals";
+import { ReferralTimeline } from "../AshaWorker/Referrals";
 const Patient = () => {
     const [villageFilter, setVillageFilter] = useState("All Villages");
     const [search, setSearch] = useState("");
@@ -164,7 +164,9 @@ const PatientTableRows = ({ villageFilter, search }) => {
     };
 
     const [referStatus, setReferStatus] = useState(
-        mockData.patients.map((p) => ({ [p.id]: p?.referralStatus || "idle" })).reduce((a, b) => ({ ...a, ...b }), {})
+        mockData.patients
+            .map((p) => ({ [p.id]: p?.referralStatus || "idle" }))
+            .reduce((a, b) => ({ ...a, ...b }), {}),
     );
 
     console.log("referStatus", referStatus);
@@ -184,8 +186,8 @@ const PatientTableRows = ({ villageFilter, search }) => {
                 const referred = referStatus[p.id] !== "idle";
 
                 const status = referStatus[p.id] || "idle";
-                console.log( "status" ,  status);
-                
+                console.log("status", status);
+
                 const referedS = getStatusBadge(status);
 
                 return (

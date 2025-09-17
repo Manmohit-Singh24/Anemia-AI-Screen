@@ -13,10 +13,9 @@ const Login = () => {
     const [role, setRole] = useState("Patient");
     const [error, setError] = useState("");
 
-
     const isLoggedIn = useSelector((state) => state.AuthData.isLoggedIn);
 
-    if(isLoggedIn) navigate("/");
+    if (isLoggedIn) navigate("/");
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -34,7 +33,7 @@ const Login = () => {
         };
         Cookies.set("authData", JSON.stringify(data), { expires: 30 });
         navigate(`/`);
-    }
+    };
     return (
         <div
             className="min-h-screen flex items-center justify-center bg-card "
@@ -77,7 +76,7 @@ const Login = () => {
                             value={role}
                         >
                             <option>ASHA Worker</option>
-                            <option>Doctor</option>
+                            <option>Hospital</option>
                             <option>Patient</option>
                         </select>
                     </div>
