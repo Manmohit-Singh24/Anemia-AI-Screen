@@ -2,22 +2,28 @@ const trainingVideos = [
     {
         id: 1,
         title: "How to Click Patient Images",
-        url: "https://www.youtube.com/embed/86zlCZhaoR0?si=vITZ7wPw9qXvBIZ4",
+        url: "https://www.youtube.com/embed/86zlCZhaoR0",
     },
-    {
-        id: 2,
-        title: "Using the Device Properly",
-        url: "https://www.youtube.com/embed/Td1d5iMF3EQ?si=f6t7FDOqx_k3o6mW",
-    },
+    { id: 2, title: "Using the Device Properly", url: "https://youtube.com/embed/ry2zA8ogYZQ" },
     {
         id: 3,
-        title: "Patient Data Entry Tutorial",
-        url: "https://www.youtube.com/embed/FxroEyaqUAc?si=O8cy1foEy2q4kNa1",
+        title: "Steps to Refer a Patient to Hospital",
+        url: "https://youtube.com/embed/maZjl7QrZtY?si=7E9PAw0IiLFRzoJI",
     },
     {
-        id: 3,
-        title: "Uploading and Syncing Data to the App",
-        url: "https://www.youtube.com/embed/11tMsHKcazE?si=OvR-Sry7tWgTRhYo",
+        id: 4,
+        title: "Record Keeping and Reporting for ASHA Workers",
+        url: "https://www.youtube.com/embed/11tMsHKcazE",
+    },
+    {
+        id: 5,
+        title: "ASHA Worker : Responsibilties ",
+        url: "https://youtube.com/embed/Kfv_6t3fL9c?si=HjMEu5_Wby4i5ZM-",
+    },
+    {
+        id: 6,
+        title: "How to Counsel Pregnant Women on Nutrition",
+        url: "https://www.youtube.com/embed/0BrxCY89_uQ",
     },
 ];
 

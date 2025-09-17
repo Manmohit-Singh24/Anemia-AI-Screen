@@ -1,122 +1,5 @@
-// import React from "react";
-// import { getRiskBadge, getStatusBadge } from "./Patients";
-// import { useSelector } from "react-redux";
-// const patients = [
-//     {
-//         id: "L001",
-//         name: "Manpreet Kaur",
-//         age: 25,
-//         pregnancyMonth: 6,
-//         riskLevel: "High",
-//         status: "Referred",
-//         doctor: "Dr. Arora",
-//         hospital: "Civil Hospital Ludhiana",
-//     },
-//     {
-//         id: "L002",
-//         name: "Gurpreet Kaur",
-//         age: 23,
-//         pregnancyMonth: 4,
-//         riskLevel: "Medium",
-//         status: "Pending",
-//         doctor: "—",
-//         hospital: "—",
-//     },
-// ];
-
-// export default function LocalUserDashboard() {
-//     const username = useSelector((state) => state.AuthData.username);
-//     const p = {
-//         id: "L001",
-//         name: username,
-//         age: 25,
-//         pregnancy: 6,
-//         riskLevel: "High",
-//         status: "Referred",
-//         doctor: "Dr. Arora",
-//         hospital: "Civil Hospital Ludhiana",
-//     };
-//     return (
-//         <div className="p-6 space-y-6 page-content">
-//             {/* Page Title */}
-//             <h1 className="text-2xl font-bold text-foreground border-b pb-2">Welcome , you are i right hands </h1>
-
-//             <h1 className="text-2xl font-bold text-foreground border-b pb-2">Your Data </h1>
-
-//             {/* Patients Table */}
-//             <div className="overflow-x-auto bg-card shadow rounded-lg border">
-//                 <table className="w-full border-collapse">
-//                     <thead className="bg-card">
-//                         <tr>
-//                             <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
-//                                 Name
-//                             </th>
-//                             <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
-//                                 Age
-//                             </th>
-//                             <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
-//                                 Pregnancy
-//                             </th>
-//                             <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
-//                                 Risk Level
-//                             </th>
-//                             <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
-//                                 Status
-//                             </th>
-//                             <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
-//                                 Doctor
-//                             </th>
-//                             <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
-//                                 Hospital
-//                             </th>
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         <tr className="hover:bg-gray-50 transition">
-//                             <td className="p-4 font-medium text-gray-800 dark:text-white">
-//                                 {p.name}
-//                             </td>
-//                             <td className="p-4 text-gray-600 dark:text-gray-400">{p.age}</td>
-//                             <td className="p-4 text-gray-600 dark:text-gray-400">
-//                                 {p.pregnancy} Months
-//                             </td>
-//                             <td className="p-4">{getRiskBadge(p.risk)}</td>
-//                             <td className="p-3 border-b text-sm text-muted-foreground">
-//                                 {getStatusBadge(p.status)}
-//                             </td>
-//                             <td className="p-3 border-b text-sm text-muted-foreground">
-//                                 {p.doctor}
-//                             </td>
-//                             <td className="p-3 border-b text-sm text-muted-foreground">
-//                                 {p.hospital}
-//                             </td>
-//                         </tr>
-//                     </tbody>
-//                 </table>
-//             </div>
-
-//             <div className="p-6 space-y-6">
-//                 <h1 className="text-2xl font-bold text-foreground border-b pb-2">
-//                     Health Recommendations
-//                 </h1>{" "}
-//                 <div className="aspect-w-16 aspect-h-9 mt-10 rounded-md">
-//                     <iframe
-//                         className="w-full aspect-video rounded-lg border"
-//                         src="https://www.youtube.com/embed/-pM1jZV_a0o?si=BRQ2m2xiB1CmB0NL"
-//                         title="YouTube video player"
-//                         frameborder="0"
-//                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; "
-//                         referrerpolicy="strict-origin-when-cross-origin"
-//                         allowfullscreen
-//                     ></iframe>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
-
 import React from "react";
-import { getRiskBadge, getStatusBadge } from "./Patients";
+import { getRiskBadge, getStatusBadge } from "../Hospital/Patients";
 import { useSelector } from "react-redux";
 
 export default function LocalUserDashboard() {
@@ -129,7 +12,7 @@ export default function LocalUserDashboard() {
         pregnancy: 6,
         riskLevel: "High",
         status: "Referred",
-        doctor: "Dr. Arora",
+        doctor: "Dr. Meera Sharma",
         hospital: "Civil Hospital Ludhiana",
     };
 
@@ -237,6 +120,15 @@ export default function LocalUserDashboard() {
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen
                     ></iframe>
+                    <iframe
+                        className="w-full aspect-video rounded-lg border"
+                        src="https://www.youtube.com/embed/xMkOchqMaoQ"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                    ></iframe>
                 </div>
             </div>
 
@@ -252,4 +144,3 @@ export default function LocalUserDashboard() {
         </div>
     );
 }
-
