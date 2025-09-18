@@ -18,7 +18,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import Dashboard from "../AshaWorker/Dashboard";
 import Patient from "../Hospital/Patients";
 import Referrals from "../AshaWorker/Referrals";
-import Settings from "../AshaWorker/Settings";
+import Settings from "../components/Settings";
 import Doctor from "../Hospital/Doctor";
 import LocalUserDashboard from "../Patient/LocalUserDashboard";
 import ConsultationPage from "../Patient/ConsultationPage";
@@ -51,9 +51,13 @@ const Layout = () => {
                 return <Dashboard />;
 
             case "Patients":
-                if (role === "Patient") return <ConsultationPage />;
+                if (role === "Patient") return <></>;
                 return <Patient />;
 
+            case "Consultation":
+                if (role === "Patient") return <ConsultationPage />;
+                return <></>;
+            
             case "referrals":
                 if (role !== "Patient") return <Referrals />;
                 return <></>;
@@ -124,6 +128,22 @@ const Layout = () => {
                                     </Link>
                                 )}
 
+                            {
+                                role === "Patient" && (
+                                    <Link
+                                        to={`/Consultation`}
+                                        className={
+                                            "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                            (page === "Consultation" ? " active" : "")
+                                        }
+                                    >
+                                        <Hospital />
+                                        <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
+                                            Consultation
+                                        </span>
+                                    </Link>
+                                )
+                            }
                             {role !== "Patient" && (
                                 <Link
                                     to={`/referrals`}
