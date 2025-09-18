@@ -6,34 +6,7 @@ const Doctor = () => {
     const [showAddForm, setShowAddForm] = useState(false);
 
     // Doctors stored in state
-    const [doctors, setDoctors] = useState([
-        {
-            id: 1,
-            name: "Dr. Aditi Sharma",
-            specialization: "Obstetrician & Gynecologist",
-            experience: "12+ years",
-            email: "aditi.sharma@hospital.com",
-            phone: "+91 9876543210",
-            patients: [
-                {
-                    id: 101,
-                    name: "Raviya Kumari",
-                    age: 27,
-                    status: "2nd Trimester",
-                    hemoglobin: "9.5 g/dL",
-                },
-            ],
-        },
-        {
-            id: 2,
-            name: "Dr. Manish Gupta",
-            specialization: "General Physician",
-            experience: "8 years",
-            email: "manish.gupta@hospital.com",
-            phone: "+91 9988776655",
-            patients: [],
-        },
-    ]);
+    const [doctors, setDoctors] = useState(initState);
 
     // New Doctor form state
     const [newDoctor, setNewDoctor] = useState({
@@ -253,3 +226,150 @@ const Doctor = () => {
 };
 
 export default Doctor;
+
+const initState = [
+    {
+        id: 1,
+        name: "Dr. Aditi Sharma",
+        specialization: "Obstetrician & Gynecologist",
+        experience: "12+ years",
+        email: "aditi.sharma@hospital.com",
+        phone: "+91 9876543210",
+        patients: [
+            {
+                id: 101,
+                name: "Raviya Kumari",
+                age: 27,
+                status: "2nd Trimester",
+                hemoglobin: "9.5 g/dL",
+            },
+            {
+                id: 102,
+                name: "Pooja Devi",
+                age: 32,
+                status: "3rd Trimester",
+                hemoglobin: "10.2 g/dL",
+            },
+        ],
+    },
+    {
+        id: 2,
+        name: "Dr. Manish Gupta",
+        specialization: "General Physician",
+        experience: "8 years",
+        email: "manish.gupta@hospital.com",
+        phone: "+91 9988776655",
+        patients: [],
+    },
+    {
+        id: 3,
+        name: "Dr. Kavita Reddy",
+        specialization: "Pediatrician",
+        experience: "10 years",
+        email: "kavita.reddy@hospital.com",
+        phone: "+91 9876501234",
+        patients: [
+            {
+                id: 103,
+                name: "Ansh Verma",
+                age: 4,
+                status: "Anemia Risk",
+                hemoglobin: "8.8 g/dL",
+            },
+        ],
+    },
+    {
+        id: 4,
+        name: "Dr. Rajesh Mehta",
+        specialization: "Cardiologist",
+        experience: "15 years",
+        email: "rajesh.mehta@hospital.com",
+        phone: "+91 9876505678",
+        patients: [],
+    },
+    {
+        id: 5,
+        name: "Dr. Sneha Kapoor",
+        specialization: "Nutritionist",
+        experience: "6 years",
+        email: "sneha.kapoor@hospital.com",
+        phone: "+91 9876598765",
+        patients: [
+            {
+                id: 104,
+                name: "Suman Kaur",
+                age: 29,
+                status: "Postnatal",
+                hemoglobin: "11.0 g/dL",
+            },
+            {
+                id: 105,
+                name: "Kamla Devi",
+                age: 34,
+                status: "2nd Trimester",
+                hemoglobin: "9.0 g/dL",
+            },
+        ],
+    },
+    {
+        id: 6,
+        name: "Dr. Imran Khan",
+        specialization: "Orthopedic Surgeon",
+        experience: "9 years",
+        email: "imran.khan@hospital.com",
+        phone: "+91 9876512345",
+        patients: [],
+    },
+    {
+        id: 7,
+        name: "Dr. Priya Nair",
+        specialization: "Dermatologist",
+        experience: "7 years",
+        email: "priya.nair@hospital.com",
+        phone: "+91 9876523456",
+        patients: [],
+    },
+    {
+        id: 8,
+        name: "Dr. Arjun Malhotra",
+        specialization: "ENT Specialist",
+        experience: "11 years",
+        email: "arjun.malhotra@hospital.com",
+        phone: "+91 9876534567",
+        patients: [
+            {
+                id: 106,
+                name: "Rahul Singh",
+                age: 18,
+                status: "Routine Checkup",
+                hemoglobin: "13.0 g/dL",
+            },
+        ],
+    },
+    {
+        id: 9,
+        name: "Dr. Neha Bansal",
+        specialization: "Psychiatrist",
+        experience: "14 years",
+        email: "neha.bansal@hospital.com",
+        phone: "+91 9876545678",
+        patients: [],
+    },
+    {
+        id: 10,
+        name: "Dr. Suresh Patil",
+        specialization: "Pathologist",
+        experience: "20+ years",
+        email: "suresh.patil@hospital.com",
+        phone: "+91 9876556789",
+        patients: [
+            {
+                id: 107,
+                name: "Meena Devi",
+                age: 40,
+                status: "Anemia Severe",
+                hemoglobin: "6.5 g/dL",
+            },
+        ],
+    },
+];

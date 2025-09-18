@@ -106,7 +106,6 @@ export const getRiskBadge = (risk) => {
 };
 
 export const getStatusBadge = (status) => {
-    console.log("status", status);
 
     switch (status) {
         case "Completed":
@@ -159,7 +158,6 @@ const PatientTableRows = ({ villageFilter, search }) => {
     const [selectedPatient, setSelectedPatient] = useState(null);
 
     const openPatientModal = (p) => {
-        console.log("Open modal for patient", p);
         setSelectedPatient(p);
     };
 
@@ -169,7 +167,6 @@ const PatientTableRows = ({ villageFilter, search }) => {
             .reduce((a, b) => ({ ...a, ...b }), {}),
     );
 
-    console.log("referStatus", referStatus);
 
     // e.g. { "p1": "idle", "p2": "loading", "p3": "done" }
 
@@ -186,7 +183,6 @@ const PatientTableRows = ({ villageFilter, search }) => {
                 const referred = referStatus[p.id] !== "idle";
 
                 const status = referStatus[p.id] || "idle";
-                console.log("status", status);
 
                 const referedS = getStatusBadge(status);
 

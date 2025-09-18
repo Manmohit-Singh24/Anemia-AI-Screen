@@ -2,30 +2,7 @@ import { useState } from "react";
 import { Eye, X, Trash2, Plus } from "lucide-react";
 
 const Hospitals = () => {
-    const [hospitals, setHospitals] = useState([
-        {
-            id: 1,
-            name: "District Hospital X",
-            type: "District Hospital",
-            phone: "+91 9876500001",
-            email: "districtx@hospital.com",
-            address: "Main Road, District X, State Y",
-            dateOfRegistration: "2020-05-10",
-            status: "Active",
-            capacity: 120,
-        },
-        {
-            id: 2,
-            name: "Community Health Center A",
-            type: "Community Health Center",
-            phone: "+91 9876500002",
-            email: "chcA@hospital.com",
-            address: "Village A, District X, State Y",
-            dateOfRegistration: "2021-03-22",
-            status: "Active",
-            capacity: 60,
-        },
-    ]);
+    const [hospitals, setHospitals] = useState(initState);
 
     const [selectedHospital, setSelectedHospital] = useState(null);
     const [showAddModal, setShowAddModal] = useState(false);
@@ -269,3 +246,116 @@ const Hospitals = () => {
 };
 
 export default Hospitals;
+
+const initState = [
+    {
+        id: 1,
+        name: "District Hospital X",
+        type: "District Hospital",
+        phone: "+91 9876500001",
+        email: "districtx@hospital.com",
+        address: "Main Road, District X, State Y",
+        dateOfRegistration: "2020-05-10",
+        status: "Active",
+        capacity: 120,
+    },
+    {
+        id: 2,
+        name: "Community Health Center A",
+        type: "Community Health Center",
+        phone: "+91 9876500002",
+        email: "chcA@hospital.com",
+        address: "Village A, District X, State Y",
+        dateOfRegistration: "2021-03-22",
+        status: "Active",
+        capacity: 60,
+    },
+    {
+        id: 3,
+        name: "Primary Health Center B",
+        type: "Primary Health Center",
+        phone: "+91 9876500003",
+        email: "phcB@hospital.com",
+        address: "Block B, District Y, State Z",
+        dateOfRegistration: "2019-11-15",
+        status: "Active",
+        capacity: 30,
+    },
+    {
+        id: 4,
+        name: "Sub-Health Center C",
+        type: "Sub-Health Center",
+        phone: "+91 9876500004",
+        email: "shcC@hospital.com",
+        address: "Village C, Block D, District Y, State Z",
+        dateOfRegistration: "2022-01-08",
+        status: "Active",
+        capacity: 15,
+    },
+    {
+        id: 5,
+        name: "District Hospital Y",
+        type: "District Hospital",
+        phone: "+91 9876500005",
+        email: "districty@hospital.com",
+        address: "Civil Lines, District Y, State Z",
+        dateOfRegistration: "2018-07-19",
+        status: "Active",
+        capacity: 150,
+    },
+    {
+        id: 6,
+        name: "Community Health Center D",
+        type: "Community Health Center",
+        phone: "+91 9876500006",
+        email: "chcD@hospital.com",
+        address: "Village D, District Z, State Y",
+        dateOfRegistration: "2021-12-02",
+        status: "Inactive",
+        capacity: 50,
+    },
+    {
+        id: 7,
+        name: "Primary Health Center E",
+        type: "Primary Health Center",
+        phone: "+91 9876500007",
+        email: "phcE@hospital.com",
+        address: "Block E, District Z, State Y",
+        dateOfRegistration: "2020-09-30",
+        status: "Active",
+        capacity: 25,
+    },
+    {
+        id: 8,
+        name: "Sub-Health Center F",
+        type: "Sub-Health Center",
+        phone: "+91 9876500008",
+        email: "shcF@hospital.com",
+        address: "Village F, Block G, District W, State X",
+        dateOfRegistration: "2022-06-14",
+        status: "Active",
+        capacity: 10,
+    },
+    {
+        id: 9,
+        name: "Community Health Center G",
+        type: "Community Health Center",
+        phone: "+91 9876500009",
+        email: "chcG@hospital.com",
+        address: "Village G, District W, State X",
+        dateOfRegistration: "2019-04-25",
+        status: "Active",
+        capacity: 70,
+    },
+    {
+        id: 10,
+        name: "District Hospital Z",
+        type: "District Hospital",
+        phone: "+91 9876500010",
+        email: "districtz@hospital.com",
+        address: "Station Road, District Z, State W",
+        dateOfRegistration: "2017-02-12",
+        status: "Active",
+        capacity: 200,
+    },
+];

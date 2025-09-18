@@ -319,7 +319,7 @@ const Layout = () => {
                     </header>
                     <div
                         id="page-container"
-                        className="p-4 md:p-10 lg:mt-0 h-screen overflow-scroll"
+                        className="p-4 md:p-10 mb-200  lg:mt-0 h-screen overflow-scroll"
                     >
                         {pageComponent}
                     </div>

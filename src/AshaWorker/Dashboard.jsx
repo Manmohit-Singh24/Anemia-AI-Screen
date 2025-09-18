@@ -41,7 +41,6 @@ const Dashboard = () => {
         );
     });
 
-    console.log(vilageTable);
 
     return (
         <div className="page-content mb-50">

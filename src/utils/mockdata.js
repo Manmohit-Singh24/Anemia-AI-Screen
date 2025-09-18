@@ -69,6 +69,17 @@ export const mockData = {
             referredOn: "2025-09-01",
             referralStatus: "Completed",
         },
+        {
+            id: 7,
+            name: "Harpreet Kaur",
+            age: 27,
+            pregnancy: "2 Months",
+            risk: 5.8,
+            status: "Mild",
+            village: "Nawan Pind",
+        },
+        
+        
     ],
     referralTimeline: [
         {
