@@ -108,8 +108,8 @@ const Layout = () => {
                                     Dashboard
                                 </span>
                             </Link>
-                            {role === "ASHA" ||
-                                (role === "Hospital" && (
+                            {(role === "ASHA" ||
+                                role === "Hospital") && (
                                     <Link
                                         to={`/Patients`}
                                         className={
@@ -122,7 +122,7 @@ const Layout = () => {
                                             {role === "Patient" ? "Consultation" : "Patients"}
                                         </span>
                                     </Link>
-                                ))}
+                                )}
 
                             {role !== "Patient" && (
                                 <Link
@@ -138,6 +138,7 @@ const Layout = () => {
                                     </span>
                                 </Link>
                             )}
+
                             {role === "ASHA" && (
                                 <Link
                                     to={`/tutorial`}
@@ -152,6 +153,7 @@ const Layout = () => {
                                     </span>
                                 </Link>
                             )}
+
                             {/* Doctor Link */}
                             {role === "Hospital" && (
                                 <>
@@ -182,6 +184,7 @@ const Layout = () => {
                                     </Link>
                                 </>
                             )}
+
                             {role === "DHO" && (
                                 <Link
                                     to={`/hospitals`}
