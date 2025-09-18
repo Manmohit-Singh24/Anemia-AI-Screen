@@ -1,11 +1,12 @@
 import React from "react";
 import { getRiskBadge, getStatusBadge } from "../Hospital/Patients";
 import { useSelector } from "react-redux";
+import {Eye , X} from "lucide-react";
 
 export default function LocalUserDashboard() {
     const username = useSelector((state) => state.AuthData.username);
-
-    const p = {
+    const [showImageModal, setShowImageModal] = React.useState(false);
+    const patient = {
         id: "L001",
         name: username || "User",
         age: 25,
@@ -22,7 +23,7 @@ export default function LocalUserDashboard() {
             <div className="bg-card shadow rounded-lg border p-6 flex items-center justify-between">
                 <div>
                     <h1 className="text-2xl font-bold text-foreground">
-                        👋 Welcome back, {p.name}!
+                        👋 Welcome back, {patient.name}!
                     </h1>
                     <p className="text-muted-foreground">
                         You are in safe hands. Here’s an overview of your health journey.
@@ -34,19 +35,21 @@ export default function LocalUserDashboard() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-card border shadow rounded-lg p-4 text-center">
                     <p className="text-sm text-muted-foreground">Pregnancy Month</p>
-                    <p className="text-xl font-bold text-foreground">{p.pregnancy}</p>
+                    <p className="text-xl font-bold text-foreground">{patient.pregnancy}</p>
                 </div>
                 <div className="bg-card border shadow rounded-lg p-4 text-center">
                     <p className="text-sm text-muted-foreground">Risk Level</p>
-                    <div className="flex justify-center mt-1">{getRiskBadge(p.riskLevel)}</div>
+                    <div className="flex justify-center mt-1">
+                        {getRiskBadge(patient.riskLevel)}
+                    </div>
                 </div>
                 <div className="bg-card border shadow rounded-lg p-4 text-center">
                     <p className="text-sm text-muted-foreground">Status</p>
-                    <div className="flex justify-center mt-1">{getStatusBadge(p.status)}</div>
+                    <div className="flex justify-center mt-1">{getStatusBadge(patient.status)}</div>
                 </div>
                 <div className="bg-card border shadow rounded-lg p-4 text-center">
                     <p className="text-sm text-muted-foreground">Doctor</p>
-                    <p className="text-md font-medium">{p.doctor}</p>
+                    <p className="text-md font-medium text-foreground">{patient.doctor}</p>
                 </div>
             </div>
 
@@ -80,22 +83,96 @@ export default function LocalUserDashboard() {
                                 <th className="p-3 text-left text-sm font-semibold text-foreground border-b">
                                     Hospital
                                 </th>
+                                <th className="pr-2 text-center text-sm font-semibold text-foreground border-b">
+                                    View Images
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                                <td className="p-4 font-medium">{p.name}</td>
-                                <td className="p-4 text-muted-foreground">{p.age}</td>
-                                <td className="p-4 text-muted-foreground">{p.pregnancy} Months</td>
-                                <td className="p-4">{getRiskBadge(p.riskLevel)}</td>
-                                <td className="p-4">{getStatusBadge(p.status)}</td>
-                                <td className="p-4 text-muted-foreground">{p.doctor}</td>
-                                <td className="p-4 text-muted-foreground">{p.hospital}</td>
+                                <td className="p-4 font-medium text-foreground">{patient.name}</td>
+                                <td className="p-4 text-muted-foreground">{patient.age}</td>
+                                <td className="p-4 text-muted-foreground">
+                                    {patient.pregnancy} Months
+                                </td>
+                                <td className="p-4">{getRiskBadge(patient.riskLevel)}</td>
+                                <td className="p-4">{getStatusBadge(patient.status)}</td>
+                                <td className="p-4 text-muted-foreground">{patient.doctor}</td>
+                                <td className="p-4 text-muted-foreground">{patient.hospital}</td>
+                                <td className="p-4 text-center">
+                                    <button
+                                        className="p-2 text-rose-600 bg-rose-100 dark:text-rose-300 dark:bg-rose-900/50 rounded-md hover:bg-rose-200 dark:hover:bg-rose-900 transition-colors"
+                                        onClick={() => {
+                                            setShowImageModal(true);
+                                        }}
+                                    >
+                                        <Eye className="w-5 h-5" />
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            {showImageModal && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                    <div className="bg-white dark:bg-slate-900 rounded-xl shadow-lg p-6 w-full max-w-2xl relative">
+                        {/* Close button */}
+                        <button
+                            className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                            onClick={() => setShowImageModal(false)}
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+
+                        <h2 className="text-xl font-bold mb-6 text-foreground">
+                            Patient Images - {patient.name}
+                        </h2>
+
+                        {/* Images grid */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div className="text-center">
+                                <img
+                                    src="./assets/eye.jpg"
+                                    alt="Eye"
+                                    className="w-full h-40 object-cover rounded-lg border"
+                                />
+                                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">Eye</p>
+                                <p class="text-xs mt-1 font-medium text-gray-600 dark:text-gray-400">
+                                    Eye Score: 8.5
+                                </p>
+                            </div>
+                            <div className="text-center">
+                                <img
+                                    src="./assets/tongue.jpeg"
+                                    alt="Tongue"
+                                    className="w-full h-40 object-cover rounded-lg border"
+                                />
+                                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                                    Tongue
+                                </p>
+                                <p class="text-xs mt-1 font-medium text-gray-600 dark:text-gray-400">
+                                    Tongue Score: 7.9
+                                </p>
+                            </div>
+                            <div className="text-center">
+                                <img
+                                    src="./assets/nailbed.png"
+                                    alt="Nail"
+                                    className="w-full h-40 object-cover rounded-lg border"
+                                />
+                                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                                    Nail
+                                </p>
+                                <p class="text-xs mt-1 font-medium text-gray-600 dark:text-gray-400">
+                                    Nailbed Score: 8.1
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Recommendations */}
             <div>
@@ -137,7 +214,7 @@ export default function LocalUserDashboard() {
                 <h2 className="text-xl font-bold text-foreground border-b pb-2 mb-3">Next Steps</h2>
                 <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                     <li>Take your iron and calcium supplements daily.</li>
-                    <li>Schedule next checkup with {p.doctor}.</li>
+                    <li>Schedule next checkup with {patient.doctor}.</li>
                     <li>Track baby movements regularly.</li>
                 </ul>
             </div>

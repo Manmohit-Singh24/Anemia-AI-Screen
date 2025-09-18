@@ -92,7 +92,7 @@ const Layout = () => {
                 {/* Sidebar */}
                 <div
                     id="sidebar"
-                    className="w-full lg:w-64 bg-rose-900 text-white flex lg:flex-col justify-between p-4 lg:min-h-screen fixed lg:relative bottom-0 lg:bottom-auto z-40 shadow-2xl lg:shadow-none"
+                    className="w-full lg:w-64 bg-rose-900 text-white flex lg:flex-col justify-between p-4 lg:min-h-screen fixed  lg:relative bottom-0 lg:bottom-auto z-40 shadow-2xl lg:shadow-none"
                 >
                     <div className="flex lg:flex-col w-full justify-around lg:justify-start">
                         <div className="hidden lg:flex items-center mb-10 px-2">
@@ -319,7 +319,7 @@ const Layout = () => {
                     </header>
                     <div
                         id="page-container"
-                        className="p-4 md:p-10 mb-200  lg:mt-0 h-screen overflow-scroll"
+                        className="p-4 md:p-10 lg:mt-0 h-screen overflow-scroll"
                     >
                         {pageComponent}
                     </div>

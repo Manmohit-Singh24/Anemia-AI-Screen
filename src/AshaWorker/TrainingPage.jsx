@@ -1,9 +1,4 @@
 const trainingVideos = [
-    {
-        id: 1,
-        title: "How to Click Patient Images",
-        url: "https://www.youtube.com/embed/86zlCZhaoR0",
-    },
     { id: 2, title: "Using the Device Properly", url: "https://youtube.com/embed/ry2zA8ogYZQ" },
     {
         id: 3,
@@ -25,11 +20,16 @@ const trainingVideos = [
         title: "How to Counsel Pregnant Women on Nutrition",
         url: "https://www.youtube.com/embed/0BrxCY89_uQ",
     },
+    {
+        id: 1,
+        title: "How to Click Patient Images",
+        url: "https://www.youtube.com/embed/86zlCZhaoR0",
+    },
 ];
 
 export default function TrainingPage() {
     return (
-        <div className="p-6 space-y-6 page-content">
+        <div className="p-6 space-y-6 page-content mb-30">
             <h1 className="text-2xl font-bold text-foreground border-b pb-2">
                 ASHA Worker Training
             </h1>

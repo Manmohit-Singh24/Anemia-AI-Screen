@@ -187,7 +187,7 @@ const AuthPage = () => {
                             className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-500 transition-transform transform hover:scale-105"
                             onClick={onSubmit}
                         >
-                           Continue
+                            Continue
                         </button>
                     </div>
 
@@ -196,6 +196,9 @@ const AuthPage = () => {
                     )}
                 </div>
             </div>
+            <p className="absolute top-5 left-5 text-muted-foreground text-sm  ">
+                * This is a demo application and is not intended for real use.
+            </p>
         </div>
     );
 };
@@ -203,7 +206,7 @@ const AuthPage = () => {
 export default AuthPage;
 
 const PatientLogin = ({ patientId, setPatientId }) => {
-    patientId = "Devika-1234"
+    patientId = "Devika-1234";
     return (
         <div>
             <label
@@ -225,7 +228,6 @@ const PatientLogin = ({ patientId, setPatientId }) => {
         </div>
     );
 };
-
 
 const HospitalLogin = ({ email, setEmail, password, setPassword }) => {
     email = "apex@gmail.com";
