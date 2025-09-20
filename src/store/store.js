@@ -7,7 +7,7 @@ const AuthSlice = createSlice({
         username: undefined,
         role: undefined,
         isLoggedIn: false,
-        theme: "light",
+        theme: "dark",
     },
     reducers: {
         setAuthData: (state, action) => {
