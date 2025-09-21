@@ -7,6 +7,7 @@ import "./index.css";
 import App from "./App.jsx";
 import Layout from "./pages/Layout.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
+import SystemDesign from "./pages/SystemDesign.jsx";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,16 @@ const router = createBrowserRouter([
                         element: <Layout />,
                     },
                 ],
+            },
+        ],
+    },
+    {
+        path: "/system-design",
+        element: <SystemDesign />,
+        children: [
+            {
+                path: "/system-design/:page",
+                element: <SystemDesign />,
             },
         ],
     },

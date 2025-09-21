@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuthData } from "../store/store";
 import Cookies from "js-cookie";
@@ -198,13 +198,12 @@ const AuthPage = () => {
             </div>
             <div className="fixed top-2 left-1/2 translate-x-[-50%] text-foreground text-xs flex flex-col text-center p-2 px-5 rounded-xl shadow border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700">
                 * This is a demo application and is not intended for real use.
-                <a
-                    href="https://excalidraw.com/#room=e46d6ebf81a18d56c037,NY4L073aF6BX7La4L94nlw"
+                <Link
+                    to={"/system-design"}
                     className="text-rose-400 underline  hover:text-rose-600"
-                    target="_blank"
                 >
                     Click Here To View System Design <i>(Tentative)</i>
-                </a>
+                </Link>
             </div>
         </div>
     );
