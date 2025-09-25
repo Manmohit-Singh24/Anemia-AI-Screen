@@ -1,10 +1,81 @@
 import { useState, useEffect } from "react";
 import { mockData } from "../utils/mockdata";
-import { Search, Send, Loader2, Check, Eye } from "lucide-react";
+import { Search, Send, Loader2, Check, Eye, X } from "lucide-react";
 import { ReferralTimeline } from "./Referrals";
 const Patient = () => {
     const [villageFilter, setVillageFilter] = useState("All Villages");
     const [search, setSearch] = useState("");
+    const villages = Object.keys(mockData.villages);
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [allPatients, setAllPatients] = useState(mockData.patients);
+    const [newPatient, setNewPatient] = useState({
+        name: "",
+        pregnancy: "",
+        risk: "",
+        village: "",
+        phone: "",
+        status: "Active",
+        referredOn: "",
+        referralStatus: "Pending",
+        eye: "",
+        tongue: "",
+        nailImage: "",
+        age: "",
+    });
+
+    const handleImageChange = (e, field) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setNewPatient((prev) => ({ ...prev, [field]: reader.result }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleAdd = (e) => {
+        e.preventDefault();
+        const patientToAdd = {
+            ...newPatient,
+            pregnancy: newPatient.pregnancy + "Months",
+            id: Date.now(),
+        };
+
+        setAllPatients([...allPatients, patientToAdd]);
+        setShowAddModal(false);
+        setNewPatient({
+            name: "",
+            pregnancy: "",
+            risk: "",
+            village: "",
+            phone: "",
+            status: "Active",
+            referredOn: "",
+            referralStatus: "Pending",
+            eye: "",
+            tongue: "",
+            nailImage: "",
+            age: "",
+        });
+    };
+
+    const closeModal = () => {
+        setShowAddModal(false);
+        setNewPatient({
+            name: "",
+            pregnancy: "",
+            risk: "",
+            village: "",
+            phone: "",
+            status: "Active",
+            referredOn: "",
+            referralStatus: "Pending",
+            eye: "",
+            tongue: "",
+            nailImage: "",
+            age: "",
+        });
+    };
 
     return (
         <div className="page-content">
@@ -22,23 +93,34 @@ const Patient = () => {
                         onChange={(e) => setVillageFilter(e.target.value)}
                     >
                         <option>All Villages</option>
-                        <option>Bhoewali</option>
-                        <option>Kotli</option>
-                        <option>Nawan Pind</option>
-                        <option>Sangatpura</option>
+                        {villages.map((village) => (
+                            <option key={village.id} value={village.name}>
+                                {village}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
-                <div className="relative mt-4 md:mt-0">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-                    <input
-                        type="text"
-                        id="patient-search"
-                        placeholder="Search patients..."
-                        className="pl-10 pr-4 py-2 border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-foreground rounded-md"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
+                <div className="flex items-center gap-3">
+                    <button
+                        id="village-select"
+                        className="rounded-md border-gray-300 dark:border-slate-600 bg-red-600 text-white p-2"
+                        value={villageFilter}
+                        onClick={() => setShowAddModal(true)}
+                    >
+                        + Add Patient
+                    </button>
+                    <div className="relative mt-4 md:mt-0">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+                        <input
+                            type="text"
+                            id="patient-search"
+                            placeholder="Search patients..."
+                            className="pl-10 pr-4 py-2 border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-foreground rounded-md"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -68,10 +150,165 @@ const Patient = () => {
                             </tr>
                         </thead>
                         <tbody className="transition-opacity duration-300">
-                            <PatientTableRows villageFilter={villageFilter} search={search} />
+                            <PatientTableRows
+                                villageFilter={villageFilter}
+                                search={search}
+                                patients={allPatients}
+                            />
                         </tbody>
                     </table>
                 </div>
+                {showAddModal && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-lg p-6 w-full max-w-lg relative">
+                            {/* Close */}
+                            <button
+                                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                                onClick={closeModal}
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+
+                            <h2 className="text-xl text-foreground font-bold mb-4">
+                                Add New Patient
+                            </h2>
+                            <form onSubmit={handleAdd} className="space-y-3">
+                                <input
+                                    type="text"
+                                    placeholder="Patient Name"
+                                    className="w-full p-2 border rounded text-foreground"
+                                    value={newPatient.name}
+                                    onChange={(e) =>
+                                        setNewPatient({ ...newPatient, name: e.target.value })
+                                    }
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Age"
+                                    className="w-full p-2 border rounded text-foreground"
+                                    value={newPatient.age}
+                                    onChange={(e) => {
+                                        const cleaned = e.target.value.replace(/[^0-9]/g, "");
+
+                                        setNewPatient({ ...newPatient, age: cleaned });
+                                    }}
+                                    required
+                                />
+
+                                <input
+                                    type="text"
+                                    placeholder="Pregnancy (in Months)"
+                                    className="w-full p-2 border rounded text-foreground "
+                                    value={newPatient.pregnancy}
+                                    onChange={(e) => {
+                                        const cleaned = e.target.value.replace(/[^0-9]/g, "");
+                                        setNewPatient({ ...newPatient, pregnancy: cleaned });
+                                    }}
+                                    required
+                                />
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    placeholder="Risk Score"
+                                    className="w-full p-2 border rounded text-foreground"
+                                    value={newPatient.risk}
+                                    onChange={(e) => {
+                                        const cleaned = e.target.value.replace(/[^0-9]/g, "");
+
+                                        setNewPatient({ ...newPatient, risk: cleaned });
+                                    }}
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Village"
+                                    className="w-full p-2 border rounded text-foreground"
+                                    value={newPatient.village}
+                                    onChange={(e) =>
+                                        setNewPatient({ ...newPatient, village: e.target.value })
+                                    }
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Phone"
+                                    className="w-full p-2 border rounded text-foreground"
+                                    value={newPatient.phone}
+                                    onChange={(e) =>
+                                        setNewPatient({ ...newPatient, phone: e.target.value })
+                                    }
+                                    required
+                                />
+
+                                {/* File Uploads */}
+                                <div>
+                                    <label className="block font-medium text-foreground">
+                                        Eye Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleImageChange(e, "eye")}
+                                        className="w-full text-muted-foreground border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md p-2 cursor-pointer"
+                                    />
+                                    {newPatient.eye && (
+                                        <img
+                                            src={newPatient.eye}
+                                            alt="Eye Preview"
+                                            className="mt-2 h-20 rounded"
+                                        />
+                                    )}
+                                </div>
+
+                                <div>
+                                    <label className="block font-medium text-foreground">
+                                        Tongue Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleImageChange(e, "tongue")}
+                                        className="w-full text-muted-foreground border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md p-2 cursor-pointer"
+                                    />
+                                    {newPatient.tongue && (
+                                        <img
+                                            src={newPatient.tongue}
+                                            alt="Tongue Preview"
+                                            className="mt-2 h-20 rounded"
+                                        />
+                                    )}
+                                </div>
+
+                                <div>
+                                    <label className="block font-medium text-foreground">
+                                        Nail Image
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleImageChange(e, "nailImage")}
+                                        className="w-full text-muted-foreground border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-md p-2 cursor-pointer"
+                                    />
+                                    {newPatient.nailImage && (
+                                        <img
+                                            src={newPatient.nailImage}
+                                            alt="Nail Preview"
+                                            className="mt-2 h-20 rounded"
+                                        />
+                                    )}
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
+                                >
+                                    Save Patient
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -106,7 +343,6 @@ export const getRiskBadge = (risk) => {
 };
 
 export const getStatusBadge = (status) => {
-
     switch (status) {
         case "Completed":
             return (
@@ -141,11 +377,12 @@ export const getStatusBadge = (status) => {
     }
 };
 
-const PatientTableRows = ({ villageFilter, search }) => {
-    const [filteredPatients, setFilteredPatients] = useState(mockData.patients);
+const PatientTableRows = ({ villageFilter, search, patients }) => {
+    console.log(patients);
+
+    const [filteredPatients, setFilteredPatients] = useState(patients);
 
     useEffect(() => {
-        let patients = mockData.patients;
         if (villageFilter !== "All Villages") {
             patients = patients.filter((p) => p.village === villageFilter);
         }
@@ -153,7 +390,7 @@ const PatientTableRows = ({ villageFilter, search }) => {
             patients = patients.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
         }
         setFilteredPatients(patients);
-    }, [villageFilter, search]);
+    }, [villageFilter, search , patients]);
 
     const [selectedPatient, setSelectedPatient] = useState(null);
 
@@ -166,7 +403,6 @@ const PatientTableRows = ({ villageFilter, search }) => {
             .map((p) => ({ [p.id]: p?.referralStatus || "idle" }))
             .reduce((a, b) => ({ ...a, ...b }), {}),
     );
-
 
     // e.g. { "p1": "idle", "p2": "loading", "p3": "done" }
 

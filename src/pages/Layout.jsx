@@ -3,27 +3,27 @@ import {
     LogOut,
     Sun,
     Moon,
-    HeartPulse,
     LayoutDashboard,
     Users2,
     Settings as SettingsIcon,
     Send,
     Presentation,
     Hospital,
+    Stethoscope,
     IdCardLanyard,
 } from "lucide-react";
 import { toogleTheme, setAuthData } from "../store/store";
 import Cookies from "js-cookie";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import Dashboard from "../AshaWorker/Dashboard";
-import Patient from "../Hospital/Patients";
-import Referrals from "../AshaWorker/Referrals";
+import Dashboard from "../components/Dashboard";
+import Patient from "../components/Patients";
+import Referrals from "../components/Referrals";
 import Settings from "../components/Settings";
-import Doctor from "../Hospital/Doctor";
-import LocalUserDashboard from "../Patient/LocalUserDashboard";
-import ConsultationPage from "../Patient/ConsultationPage";
-import TrainingPage from "../AshaWorker/TrainingPage";
-import Employees from "../Hospital/Employees";
+import Doctor from "../components/Doctor";
+import LocalUserDashboard from "../components/LocalUserDashboard";
+import ConsultationPage from "../components/ConsultationPage";
+import TrainingPage from "../components/TrainingPage";
+import Employees from "../components/Employees";
 import Hospitals from "../components/HospitalsPage";
 
 const Layout = () => {
@@ -92,12 +92,25 @@ const Layout = () => {
                 {/* Sidebar */}
                 <div
                     id="sidebar"
-                    className="w-full lg:w-64 bg-rose-900 text-white flex lg:flex-col justify-between p-4 lg:min-h-screen fixed  lg:relative bottom-0 lg:bottom-auto z-40 shadow-2xl lg:shadow-none"
+                    className="w-full lg:w-64 bg-rose-900 text-white flex lg:flex-col justify-between p-4 lg:min-h-screen fixed  lg:relative bottom-0 lg:bottom-auto z-40 shadow-2xl lg:shadow-none "
                 >
                     <div className="flex lg:flex-col w-full justify-around lg:justify-start">
-                        <div className="hidden lg:flex items-center mb-10 px-2">
-                            <HeartPulse className="mr-2 w-10 h-10" />
-                            <span className="text-2xl font-bold">Asha AI-Screen</span>
+                        <div className="hidden lg:flex items-center mb-10 px-2 gap-3 ">
+                            <div className="inline-flex items-center justify-center w-15 h-15 bg-rose-300/10  rounded-full ">
+                                <div className="animated-blood-drop">
+                                    <svg
+                                        className="w-7 h-7 text-rose-500 dark:text-rose-400 rotate-180"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path d="M12 2.25c-5.12 0-9.25 4.13-9.25 9.25 0 2.88 1.25 5.5 3.25 7.31l6 5.69 6-5.69c2-1.81 3.25-4.43 3.25-7.31C21.25 6.38 17.12 2.25 12 2.25Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div className="text-2xl font-bold">
+                                Anemia <br /> AI-Screen
+                            </div>
                         </div>
                         <nav className="flex lg:flex-col gap-2 w-full justify-around lg:justify-start">
                             <Link
@@ -112,39 +125,36 @@ const Layout = () => {
                                     Dashboard
                                 </span>
                             </Link>
-                            {(role === "ASHA" ||
-                                role === "Hospital") && (
-                                    <Link
-                                        to={`/Patients`}
-                                        className={
-                                            "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
-                                            (page === "Patients" ? " active" : "")
-                                        }
-                                    >
-                                        <Users2 />
-                                        <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
-                                            {role === "Patient" ? "Consultation" : "Patients"}
-                                        </span>
-                                    </Link>
-                                )}
+                            {(role === "ASHA" || role === "Hospital") && (
+                                <Link
+                                    to={`/Patients`}
+                                    className={
+                                        "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                        (page === "Patients" ? " active" : "")
+                                    }
+                                >
+                                    <Users2 />
+                                    <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
+                                        {role === "Patient" ? "Consultation" : "Patients"}
+                                    </span>
+                                </Link>
+                            )}
 
-                            {
-                                role === "Patient" && (
-                                    <Link
-                                        to={`/Consultation`}
-                                        className={
-                                            "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
-                                            (page === "Consultation" ? " active" : "")
-                                        }
-                                    >
-                                        <Hospital />
-                                        <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
-                                            Consultation
-                                        </span>
-                                    </Link>
-                                )
-                            }
-                            {role !== "Patient" && (
+                            {role === "Patient" && (
+                                <Link
+                                    to={`/Consultation`}
+                                    className={
+                                        "sidebar-link nav-link flex flex-col lg:flex-row items-center p-3 rounded-xl text-center lg:text-left" +
+                                        (page === "Consultation" ? " active" : "")
+                                    }
+                                >
+                                    <Hospital />
+                                    <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
+                                        Consultation
+                                    </span>
+                                </Link>
+                            )}
+                            {role === "ASHA" && (
                                 <Link
                                     to={`/referrals`}
                                     className={
@@ -184,7 +194,7 @@ const Layout = () => {
                                             (page === "doctor" ? " active" : "")
                                         }
                                     >
-                                        <Users2 />
+                                        <Stethoscope />
                                         <span className="text-xs lg:text-base mt-1 lg:mt-0 lg:ml-4">
                                             Doctor
                                         </span>

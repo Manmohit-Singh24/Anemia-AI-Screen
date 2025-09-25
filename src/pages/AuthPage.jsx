@@ -117,7 +117,7 @@ const AuthPage = () => {
             role === "Patient"
                 ? "Devika"
                 : role === "ASHA"
-                ? "Kiranveer Singh"
+                ? "Madhuri"
                 : role === "DHO"
                 ? "Gurleen Kaur"
                 : "Apex Hospital";
@@ -141,17 +141,18 @@ const AuthPage = () => {
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-rose-100 dark:bg-rose-900/50 rounded-full mb-4">
                         <div className="animated-blood-drop">
                             <svg
-                                className="w-10 h-10 text-rose-500 dark:text-rose-400"
+                                className="w-10 h-10 text-rose-500 dark:text-rose-400 rotate-180"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg"
+                                
                             >
                                 <path d="M12 2.25c-5.12 0-9.25 4.13-9.25 9.25 0 2.88 1.25 5.5 3.25 7.31l6 5.69 6-5.69c2-1.81 3.25-4.43 3.25-7.31C21.25 6.38 17.12 2.25 12 2.25Z" />
                             </svg>
                         </div>
                     </div>
                     <h2 className="text-3xl font-extrabold text-gray-900 dark:text-foreground">
-                        Asha AI-Screen
+                        Anemia AI-Screen
                     </h2>
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                         Non-Invasive Anemia Screening Portal
@@ -197,7 +198,7 @@ const AuthPage = () => {
                 </div>
             </div>
             <div className="fixed top-2 left-1/2 translate-x-[-50%] text-foreground text-xs flex flex-col text-center p-2 px-5 rounded-xl shadow border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700">
-                * This is a demo application and is not intended for real use.
+                * This is a demo application. 
                 <Link
                     to={"/system-design"}
                     className="text-rose-400 underline  hover:text-rose-600"
@@ -280,7 +281,7 @@ const HospitalLogin = ({ email, setEmail, password, setPassword }) => {
 };
 
 const AshaLogin = ({ ashaId, setAshaId }) => {
-    ashaId = "Kiran-7172";
+    ashaId = "Madhuri-7172";
     return (
         <div>
             <label

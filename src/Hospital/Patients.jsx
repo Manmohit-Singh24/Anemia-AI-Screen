@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { mockData } from "../utils/mockdata";
+import { mockData } from "../../utils/mockdata";
 import { Search, Send, Loader2, Check, Eye, X } from "lucide-react";
 
 import { ReferralTimeline } from "../AshaWorker/Referrals";

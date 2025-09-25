@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { mockData } from "../utils/mockdata";
 import { Search, Send, Loader2, Check, Eye, Circle, LineChart } from "lucide-react";
-import { getStatusBadge, getRiskBadge } from "../Hospital/Patients";
+import { getStatusBadge } from "./Patients";
 const Referrals = () => {
     const [selectedPatient, setSelectedPatient] = useState(null);
     return (

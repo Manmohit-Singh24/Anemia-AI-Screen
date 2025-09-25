@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const Settings = () => {
     const { username, role } = useSelector((state) => state.AuthData);
-
     return (
         <div className="page-content">
             {/* Page Header */}
@@ -30,8 +29,9 @@ const Settings = () => {
                             <input
                                 id="settings-name"
                                 type="text"
+                                dis
                                 defaultValue={username}
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-foreground rounded-md"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-slate-600 bg-gray-100 dark:bg-slate-900 text-foreground rounded-md"
                             />
                         </div>
 
@@ -44,13 +44,13 @@ const Settings = () => {
                                 id="settings-role"
                                 defaultValue={role}
                                 readOnly
-                                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-slate-600 bg-gray-100 dark:bg-slate-900 text-gray-600 dark:text-gray-400 rounded-md"
+                                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-slate-600 bg-gray-100 dark:bg-slate-900 text-foreground rounded-md"
                             />
                         </div>
 
-                        <button className="w-full py-2 px-4 rounded-md text-foreground bg-rose-600 hover:bg-rose-700 transition-colors">
+                        {/* <button className="w-full py-2 px-4 rounded-md text-foreground bg-rose-600 hover:bg-rose-700 transition-colors">
                             Update Profile
-                        </button>
+                        </button> */}
                     </div>
 
                     {/* Right Column - Preferences */}
@@ -58,7 +58,11 @@ const Settings = () => {
                         {/* Language Selector */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                                App Language
+                                App Language{" "}
+                                <span className="text-xs text-muted-foreground italic">
+                                    {" "}
+                                    (*Currenly non-functional )
+                                </span>
                             </label>
                             <select className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-foreground rounded-md">
                                 <option>English</option>

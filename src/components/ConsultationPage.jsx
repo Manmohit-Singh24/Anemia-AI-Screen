@@ -85,12 +85,11 @@ export default function ConsultationPage() {
 
                         {/* Action Buttons */}
                         <div className="flex space-x-3 mt-3">
-                            <a
-                                href={`tel:${doc.phone.replace(/\s/g, "")}`}
+                            <div
                                 className="flex items-center px-4 py-1 text-sm rounded-lg bg-green-600 text-white hover:bg-green-700 transition"
                             >
                                 <Phone className="mr-2" /> Call
-                            </a>
+                            </div>
                             <button className="flex items-center px-4 py-1 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">
                                 <Video className="mr-2" /> Video Call
                             </button>

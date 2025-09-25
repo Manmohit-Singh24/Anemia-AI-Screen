@@ -1,5 +1,5 @@
 import React from "react";
-import { getRiskBadge, getStatusBadge } from "../Hospital/Patients";
+import { getRiskBadge, getStatusBadge } from "./Patients";
 import { useSelector } from "react-redux";
 import {Eye , X} from "lucide-react";
 
