@@ -29,7 +29,7 @@ const Settings = () => {
                             <input
                                 id="settings-name"
                                 type="text"
-                                dis
+                                disabled
                                 defaultValue={username}
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-slate-600 bg-gray-100 dark:bg-slate-900 text-foreground rounded-md"
                             />
@@ -43,7 +43,7 @@ const Settings = () => {
                                 type="text"
                                 id="settings-role"
                                 defaultValue={role}
-                                readOnly
+                                disabled
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-slate-600 bg-gray-100 dark:bg-slate-900 text-foreground rounded-md"
                             />
                         </div>
