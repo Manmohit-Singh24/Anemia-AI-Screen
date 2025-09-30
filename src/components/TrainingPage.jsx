@@ -33,6 +33,10 @@ export default function TrainingPage() {
             <h1 className="text-2xl font-bold text-foreground border-b pb-2">
                 ASHA Worker Training
             </h1>
+            <span className="text-muted-foreground text-xs italic">
+                {" "}
+                *These are only sample (random) videos for now , real videos will be uploaded soon
+            </span>
 
             <p className="text-muted-foreground">
                 Welcome! Here you can watch step-by-step video tutorials on how to use your device

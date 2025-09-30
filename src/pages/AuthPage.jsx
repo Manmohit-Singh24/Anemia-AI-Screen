@@ -145,7 +145,6 @@ const AuthPage = () => {
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg"
-                                
                             >
                                 <path d="M12 2.25c-5.12 0-9.25 4.13-9.25 9.25 0 2.88 1.25 5.5 3.25 7.31l6 5.69 6-5.69c2-1.81 3.25-4.43 3.25-7.31C21.25 6.38 17.12 2.25 12 2.25Z" />
                             </svg>
@@ -198,10 +197,18 @@ const AuthPage = () => {
                 </div>
             </div>
             <div className="fixed top-2 left-1/2 translate-x-[-50%] text-foreground text-xs flex flex-col text-center p-2 px-5 rounded-xl shadow border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700">
-                * This is a demo application. 
+                * This is a demo application.
+                <a
+                    className="text-blue-400 underline  hover:text-blue-600 mt-1"
+                    href="https://www.youtube.com/watch?v=mJFJXTqDQWw"
+                    target="_blank"
+                >
+                    {" "}
+                    Youtube - Demo Video
+                </a>
                 <Link
                     to={"/system-design"}
-                    className="text-rose-400 underline  hover:text-rose-600"
+                    className="text-rose-400 underline  hover:text-rose-600 mt-1"
                 >
                     Click Here To View System Design <i>(Tentative)</i>
                 </Link>

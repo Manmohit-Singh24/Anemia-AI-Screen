@@ -96,6 +96,15 @@ const SystemDesign = () => {
         <div className="p-6 bg-[#111] h-screen w-screen flex flex-col relative">
             <div className=" text-[#ccc] w-full text-center flex items-center justify-between gap-10 border-b pb-4">
                 {/* Zoom controls */}
+                <button
+                    onClick={() => navigate("/")}
+                    className="text-sm bg-[#ccc] text-[#111] px-4 py-2 rounded-xl font-bold hover:bg-slate-300 transition"
+                >
+                    Back To HomePage
+                </button>
+                
+                <h1 className="text-4xl font-bold">System Design</h1>
+
                 <div className="flex flex-row items-center gap-2 bg-white/10 p-3 rounded-xl">
                     <button
                         onClick={zoomOut}
@@ -115,16 +124,6 @@ const SystemDesign = () => {
                         +
                     </button>
                 </div>
-
-                <h1 className="text-4xl font-bold">System Design</h1>
-
-                <button
-                    onClick={() => navigate("/")}
-                    className="text-sm bg-[#ccc] text-[#111] px-4 py-2 rounded-xl font-bold hover:bg-slate-300 transition"
-                >
-                    Back To HomePage
-                </button>
-
             </div>
 
             {/* Scrollable container */}
